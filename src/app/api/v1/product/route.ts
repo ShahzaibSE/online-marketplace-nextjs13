@@ -14,3 +14,8 @@ const products = pgTable("products", {
     price: numeric("price").notNull(),
     imageUrl: text("imageUrl")
 })
+
+export async function GET(){
+    const product_list = await db.select().from(products);
+    return NextResponse.json(product_list);
+}
