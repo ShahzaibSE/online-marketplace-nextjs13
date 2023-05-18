@@ -16,6 +16,6 @@ const products = pgTable("products", {
 })
 
 export async function GET(){
-    const product_list = await db.select().from(products);
-    return NextResponse.json(product_list);
+    // const product_list = await db.select().from(products);
+    // return NextResponse.json(product_list);
 }
