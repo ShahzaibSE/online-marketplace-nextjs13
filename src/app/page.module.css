@@ -1,0 +1,5 @@
+@layer components {
+  .container {
+    @apply w-auto max-w-none;
+  }
+}
