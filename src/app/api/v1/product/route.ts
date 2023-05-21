@@ -16,6 +16,31 @@ const products = pgTable("products", {
 })
 
 export async function GET(){
-    // const product_list = await db.select().from(products);
-    // return NextResponse.json(product_list);
+    try{
+        const _products = await db.select().from(products);
+        if(_products.length == 0){
+            return NextResponse.json({
+                status: true,
+                resCode: 204,
+                message: "No products available",
+                data: [],
+                isError: false
+            })
+        }else{
+            return NextResponse.json({
+                status: true,
+                resCode: 200,
+                message: "Products found successfully",
+                data: _products,
+                isError: false
+            })
+        }
+    }catch(err){
+        return NextResponse.json({
+            status: false,
+            resCode: 500,
+            message: "Couldn't get products due to unexpected error",
+            isError: true
+        })
+    }
 }

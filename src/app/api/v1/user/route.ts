@@ -51,6 +51,7 @@ export async function GET(request: NextRequest) {
         resCode: 200,
         message: "User found successfully",
         data: registeredUser,
+        isError: false
       });
     } else {
       return NextResponse.json({
@@ -58,6 +59,7 @@ export async function GET(request: NextRequest) {
         resCode: 204,
         message: "User not found",
         data: {},
+        isError: false
       });
     }
   } catch (err) {
@@ -65,7 +67,8 @@ export async function GET(request: NextRequest) {
       status: false,
       resCode: 500,
       message:
-        "Couldn't get books due to unexpected error",
+        "Couldn't get user due to unexpected error",
+      isError: true
     });
   }
 }
@@ -96,14 +99,16 @@ export async function POST(request: NextRequest) {
         status: true,
         resCode: 200,
         message: "User logged-In successfully",
-        data: registeredUser
+        data: registeredUser,
+        isError: false
       })
     }else {
       return NextResponse.json({
         status: true,
         resCode: 204,
         message: "User not found, please sign up.",
-        data: {}
+        data: {},
+        isError: false
       });
     }
   } catch (err) {
@@ -111,7 +116,8 @@ export async function POST(request: NextRequest) {
       status: false,
       resCode: 500,
       message:
-        "Couldn't get books due to unexpected error",
+        "Couldn't get log-in due to unexpected error",
+        isError: true
     });
   }
 }
